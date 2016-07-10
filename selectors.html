@@ -1,0 +1,429 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>String Selectors Reference &mdash; CadQuery Documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="CadQuery Documentation" href="index.html"/>
+        <link rel="next" title="CadQuery Class Summary" href="classreference.html"/>
+        <link rel="prev" title="CadQuery API Reference" href="apireference.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> CadQuery
+          
+
+          
+            
+            <img src="_static/cqlogo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing CadQuery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">CadQuery QuickStart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="designprinciples.html">CadQuery Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="primer.html">CadQuery Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html">CadQuery Scripts and Object Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">CadQuery Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apireference.html">CadQuery API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">String Selectors Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#combining-selectors">Combining Selectors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#filtering-faces">Filtering Faces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filtering-edges">Filtering Edges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filtering-vertices">Filtering Vertices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#future-enhancements">Future Enhancements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="classreference.html">CadQuery Class Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cqgi.html">The CadQuery Gateway Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending CadQuery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">RoadMap:  Planned Features</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">CadQuery</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>String Selectors Reference</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="string-selectors-reference">
+<span id="selector-reference"></span><h1>String Selectors Reference<a class="headerlink" href="#string-selectors-reference" title="Permalink to this headline">¶</a></h1>
+<p>CadQuery selector strings allow filtering various types of object lists. Most commonly, Edges, Faces, and Vertices are
+used, but all objects types can be filtered.</p>
+<p>String selectors are simply shortcuts for using the full object equivalents. If you pass one of the
+string patterns in, CadQuery will automatically use the associated selector object.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="classreference.html#cadquery.CQ.faces" title="cadquery.CQ.faces"><code class="xref py py-meth docutils literal"><span class="pre">cadquery.CQ.faces()</span></code></a></li>
+<li><a class="reference internal" href="classreference.html#cadquery.CQ.edges" title="cadquery.CQ.edges"><code class="xref py py-meth docutils literal"><span class="pre">cadquery.CQ.edges()</span></code></a></li>
+<li><a class="reference internal" href="classreference.html#cadquery.CQ.vertices" title="cadquery.CQ.vertices"><code class="xref py py-meth docutils literal"><span class="pre">cadquery.CQ.vertices()</span></code></a></li>
+<li><a class="reference internal" href="classreference.html#cadquery.CQ.solids" title="cadquery.CQ.solids"><code class="xref py py-meth docutils literal"><span class="pre">cadquery.CQ.solids()</span></code></a></li>
+<li><a class="reference internal" href="classreference.html#cadquery.CQ.shells" title="cadquery.CQ.shells"><code class="xref py py-meth docutils literal"><span class="pre">cadquery.CQ.shells()</span></code></a></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>String selectors are shortcuts to concrete selector classes, which you can use or extend. See
+<a class="reference internal" href="classreference.html#classreference"><span>CadQuery Class Summary</span></a> for more details</p>
+<p class="last">If you find that the built-in selectors are not sufficient, you can easily plug in your own.
+See <a class="reference internal" href="extending.html#extending"><span>Extending CadQuery</span></a> to see how.</p>
+</div>
+</div>
+<div class="section" id="combining-selectors">
+<h1>Combining Selectors<a class="headerlink" href="#combining-selectors" title="Permalink to this headline">¶</a></h1>
+<p>Selectors can be combined arithmetically and logically, so that it is possible to do intersection, union, and other
+combinations.  For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">box</span> <span class="o">=</span> <span class="n">cadquery</span><span class="o">.</span><span class="n">Workplane</span><span class="p">(</span><span class="s2">&quot;XY&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">selectors</span><span class="o">.</span><span class="n">StringSyntaxSelector</span>
+
+<span class="c1">### select all edges on right and left faces</span>
+<span class="c1">#box = box.edges((s(&quot;|Z&quot;) + s(&quot;|Y&quot;))).fillet(1)</span>
+
+<span class="c1">### select all edges on top and bottom</span>
+<span class="c1">#box = box.edges(-s(&quot;|Z&quot;)).fillet(1)</span>
+<span class="c1">#box = box.edges(s(&#39;|X&#39;)+s(&#39;Y&#39;)).fillet(1)</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="n">s</span><span class="p">(</span><span class="s1">&#39;&gt;Z&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">s</span><span class="p">(</span><span class="s1">&#39;&lt;Z&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">fillet</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or for another example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># select diagonal edges</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">faces</span><span class="p">(</span><span class="n">s</span><span class="p">(</span><span class="s1">&#39;&gt;Z&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">s</span><span class="p">(</span><span class="s1">&#39;&lt;Z&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="o">-</span><span class="n">s</span><span class="p">(</span><span class="s1">&#39;|X&#39;</span><span class="p">)</span><span class="o">-</span><span class="n">s</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">fillet</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="filtering-faces">
+<span id="filteringfaces"></span><h2>Filtering Faces<a class="headerlink" href="#filtering-faces" title="Permalink to this headline">¶</a></h2>
+<p>All types of filters work on faces.  In most cases, the selector refers to the direction of the <strong>normal vector</strong>
+of the face.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If a face is not planar, selectors are evaluated at the center of mass of the face. This can lead
+to results that are quite unexpected.</p>
+</div>
+<p>The axis used in the listing below are for illustration: any axis would work similarly in each case.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="30%" />
+<col width="43%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Selector</th>
+<th class="head">Selects</th>
+<th class="head">Selector Class</th>
+<th class="head"># objects returned</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>+Z</td>
+<td>Faces with normal in +z direction</td>
+<td><a class="reference internal" href="classreference.html#cadquery.DirectionSelector" title="cadquery.DirectionSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.DirectionSelector</span></code></a></td>
+<td>0 or 1</td>
+</tr>
+<tr class="row-odd"><td>|Z</td>
+<td>Faces parallel to xy plane</td>
+<td><a class="reference internal" href="classreference.html#cadquery.ParallelDirSelector" title="cadquery.ParallelDirSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.ParallelDirSelector</span></code></a></td>
+<td>0..many</td>
+</tr>
+<tr class="row-even"><td>-X</td>
+<td>Faces with  normal in neg x direction</td>
+<td><a class="reference internal" href="classreference.html#cadquery.DirectionSelector" title="cadquery.DirectionSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.DirectionSelector</span></code></a></td>
+<td>0..many</td>
+</tr>
+<tr class="row-odd"><td>#Z</td>
+<td>Faces perpendicular to z direction</td>
+<td><a class="reference internal" href="classreference.html#cadquery.PerpendicularDirSelector" title="cadquery.PerpendicularDirSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.PerpendicularDirSelector</span></code></a></td>
+<td>0..many</td>
+</tr>
+<tr class="row-even"><td>%Plane</td>
+<td>Faces of type plane</td>
+<td><a class="reference internal" href="classreference.html#cadquery.TypeSelector" title="cadquery.TypeSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.TypeSelector</span></code></a></td>
+<td>0..many</td>
+</tr>
+<tr class="row-odd"><td>&gt;Y</td>
+<td>Face farthest in the positive y dir</td>
+<td><a class="reference internal" href="classreference.html#cadquery.DirectionMinMaxSelector" title="cadquery.DirectionMinMaxSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.DirectionMinMaxSelector</span></code></a></td>
+<td>0 or 1</td>
+</tr>
+<tr class="row-even"><td>&lt;Y</td>
+<td>Face farthest in the negative y dir</td>
+<td><a class="reference internal" href="classreference.html#cadquery.DirectionMinMaxSelector" title="cadquery.DirectionMinMaxSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.DirectionMinMaxSelector</span></code></a></td>
+<td>0 or 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="filtering-edges">
+<span id="filteringedges"></span><h2>Filtering Edges<a class="headerlink" href="#filtering-edges" title="Permalink to this headline">¶</a></h2>
+<p>Some filter types are not supported for edges.  The selector usually refers to the <strong>direction</strong> of the edge.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Non-linear edges are not selected for any selectors except type (%). Non-linear edges are never returned
+when these filters are applied.</p>
+</div>
+<p>The axis used in the listing below are for illustration: any axis would work similarly in each case.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="29%" />
+<col width="44%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Selector</th>
+<th class="head">Selects</th>
+<th class="head">Selector Class</th>
+<th class="head"># objects returned</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>+Z</td>
+<td>Edges aligned in the Z direction</td>
+<td><a class="reference internal" href="classreference.html#cadquery.DirectionSelector" title="cadquery.DirectionSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.DirectionSelector</span></code></a></td>
+<td>0..many</td>
+</tr>
+<tr class="row-odd"><td>|Z</td>
+<td>Edges parallel to z direction</td>
+<td><a class="reference internal" href="classreference.html#cadquery.ParallelDirSelector" title="cadquery.ParallelDirSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.ParallelDirSelector</span></code></a></td>
+<td>0..many</td>
+</tr>
+<tr class="row-even"><td>-X</td>
+<td>Edges aligned in neg x direction</td>
+<td><a class="reference internal" href="classreference.html#cadquery.DirectionSelector" title="cadquery.DirectionSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.DirectionSelector</span></code></a></td>
+<td>0..many</td>
+</tr>
+<tr class="row-odd"><td>#Z</td>
+<td>Edges perpendicular to z direction</td>
+<td><a class="reference internal" href="classreference.html#cadquery.PerpendicularDirSelector" title="cadquery.PerpendicularDirSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.PerpendicularDirSelector</span></code></a></td>
+<td>0..many</td>
+</tr>
+<tr class="row-even"><td>%Line</td>
+<td>Edges of type line</td>
+<td><a class="reference internal" href="classreference.html#cadquery.TypeSelector" title="cadquery.TypeSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.TypeSelector</span></code></a></td>
+<td>0..many</td>
+</tr>
+<tr class="row-odd"><td>&gt;Y</td>
+<td>Edges farthest in the positive y dir</td>
+<td><a class="reference internal" href="classreference.html#cadquery.DirectionMinMaxSelector" title="cadquery.DirectionMinMaxSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.DirectionMinMaxSelector</span></code></a></td>
+<td>0 or 1</td>
+</tr>
+<tr class="row-even"><td>&lt;Y</td>
+<td>Edges farthest in the negative y dir</td>
+<td><a class="reference internal" href="classreference.html#cadquery.DirectionMinMaxSelector" title="cadquery.DirectionMinMaxSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.DirectionMinMaxSelector</span></code></a></td>
+<td>0 or 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="filtering-vertices">
+<span id="filteringvertices"></span><h2>Filtering Vertices<a class="headerlink" href="#filtering-vertices" title="Permalink to this headline">¶</a></h2>
+<p>Only a few of the filter types apply to vertices. The location of the vertex is the subject of the filter</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="30%" />
+<col width="43%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Selector</th>
+<th class="head">Selects</th>
+<th class="head">Selector Class</th>
+<th class="head"># objects returned</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&gt;Y</td>
+<td>Vertices farthest in the positive y dir</td>
+<td><a class="reference internal" href="classreference.html#cadquery.DirectionMinMaxSelector" title="cadquery.DirectionMinMaxSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.DirectionMinMaxSelector</span></code></a></td>
+<td>0 or 1</td>
+</tr>
+<tr class="row-odd"><td>&lt;Y</td>
+<td>Vertices farthest in the negative y dir</td>
+<td><a class="reference internal" href="classreference.html#cadquery.DirectionMinMaxSelector" title="cadquery.DirectionMinMaxSelector"><code class="xref py py-class docutils literal"><span class="pre">cadquery.DirectionMinMaxSelector</span></code></a></td>
+<td>0 or 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="future-enhancements">
+<h2>Future Enhancements<a class="headerlink" href="#future-enhancements" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Support direct vectors inline, such as |(x,y,z)</li>
+<li>Support multiple selectors separated by spaces, which unions the results, such as &#8220;+Z +Y to select both z and y-most faces</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="classreference.html" class="btn btn-neutral float-right" title="CadQuery Class Summary" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="apireference.html" class="btn btn-neutral" title="CadQuery API Reference" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Parametric Products Intellectual Holdings LLC, All Rights Reserved.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
